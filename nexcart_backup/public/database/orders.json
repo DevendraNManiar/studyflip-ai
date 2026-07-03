@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ord-1781466334576",
+    "orderNumber": "NEX-20260614-6099",
+    "userId": "user-1781456575520",
+    "status": "PAID",
+    "totalAmount": 2183,
+    "taxAmount": 333,
+    "shippingCost": 0,
+    "discountAmount": 0,
+    "shippingAddress": "Arthur Pendragon, f, sadasd, dasd - 12222, United Statesdc. Ph: 132435346456",
+    "trackingNumber": "TRK60961499",
+    "appliedCoupon": null,
+    "createdAt": "2026-06-14T19:45:34.577Z",
+    "items": [
+      {
+        "id": "ordit-1781466334577-0.8212839159042132",
+        "productId": "prod-2",
+        "name": "Chronos Legacy Automatic Chronograph",
+        "price": 1850,
+        "quantity": 1,
+        "variant": "Midnight Black Leather"
+      }
+    ],
+    "payment": {
+      "id": "pay-1781466334577",
+      "paymentMethod": "PAYPAL",
+      "status": "COMPLETED",
+      "transactionId": "paypal_PP-1781466334388_1781466334575",
+      "amount": 2183,
+      "createdAt": "2026-06-14T19:45:34.577Z"
+    }
+  },
+  {
+    "id": "ord-1781457039778",
+    "orderNumber": "NEX-20260614-6746",
+    "userId": "user-1781456575520",
+    "status": "PAID",
+    "totalAmount": 2218,
+    "taxAmount": 333,
+    "shippingCost": 35,
+    "discountAmount": 0,
+    "shippingAddress": "Arthur Pendragon, Mönchseestraße, hj, bhvbn  - 74072, United States. Ph: +4915511527969",
+    "trackingNumber": "TRK22998288",
+    "appliedCoupon": null,
+    "createdAt": "2026-06-14T17:10:39.778Z",
+    "items": [
+      {
+        "id": "ordit-1781457039778-0.14168437001883927",
+        "productId": "prod-2",
+        "name": "Chronos Legacy Automatic Chronograph",
+        "price": 1850,
+        "quantity": 1
+      }
+    ],
+    "payment": {
+      "id": "pay-1781457039778",
+      "paymentMethod": "PAYPAL",
+      "status": "COMPLETED",
+      "transactionId": "paypal_PP-1781457038873_1781457039775",
+      "amount": 2218,
+      "createdAt": "2026-06-14T17:10:39.778Z"
+    }
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "log-1781469600533",
+    "createdAt": "2026-06-14T20:40:00.533Z",
+    "userId": "user-1781468774810",
+    "action": "USER_LOGIN_OAUTH",
+    "details": "User komalbenbarvaliya@gmail.com logged in via Google OAuth (REAL)."
+  },
+  {
+    "id": "log-1781469576457",
+    "createdAt": "2026-06-14T20:39:36.457Z",
+    "userId": "user-1781468774810",
+    "action": "USER_DEV_ROLE_TOGGLE",
+    "details": "User komalbenbarvaliya@gmail.com toggled their developer status to CUSTOMER."
+  },
+  {
+    "id": "log-1781469569970",
+    "createdAt": "2026-06-14T20:39:29.970Z",
+    "userId": "user-1781468774810",
+    "action": "USER_DEV_ROLE_TOGGLE",
+    "details": "User komalbenbarvaliya@gmail.com toggled their developer status to ADMIN."
+  },
+  {
+    "id": "log-1781468774813",
+    "createdAt": "2026-06-14T20:26:14.813Z",
+    "userId": "user-1781468774810",
+    "action": "USER_REGISTER_OAUTH",
+    "details": "User komalbenbarvaliya@gmail.com registered via Google OAuth (REAL)."
+  },
+  {
+    "id": "log-1781467669424",
+    "createdAt": "2026-06-14T20:07:49.424Z",
+    "userId": "user-1781456575520",
+    "action": "USER_LOGIN_OAUTH",
+    "details": "User arthur.google@nexcart.luxury logged in via Google OAuth (SIMULATED)."
+  },
+  {
+    "id": "log-1781466335212",
+    "createdAt": "2026-06-14T19:45:35.212Z",
+    "userId": "user-1781456575520",
+    "action": "ORDER_PLACE_PAYPAL",
+    "details": "PayPal payment transaction paypal_PP-1781466334388_1781466334575 confirmed for order NEX-20260614-6099."
+  },
+  {
+    "id": "log-1781466264407",
+    "createdAt": "2026-06-14T19:44:24.407Z",
+    "userId": "user-1781456575520",
+    "action": "USER_DEV_ROLE_TOGGLE",
+    "details": "User arthur.google@nexcart.luxury toggled their developer status to CUSTOMER."
+  },
+  {
+    "id": "log-1781466119102",
+    "createdAt": "2026-06-14T19:41:59.102Z",
+    "userId": "user-1781456575520",
+    "action": "USER_DEV_ROLE_TOGGLE",
+    "details": "User arthur.google@nexcart.luxury toggled their developer status to ADMIN."
+  },
+  {
+    "id": "log-1781466012083",
+    "createdAt": "2026-06-14T19:40:12.083Z",
+    "userId": "user-1781456575520",
+    "action": "USER_LOGIN_OAUTH",
+    "details": "User arthur.google@nexcart.luxury logged in via Google OAuth (SIMULATED)."
+  },
+  {
+    "id": "log-1781465557044",
+    "createdAt": "2026-06-14T19:32:37.044Z",
+    "userId": "user-1781456575520",
+    "action": "USER_LOGIN_OAUTH",
+    "details": "User arthur.google@nexcart.luxury logged in via Google OAuth."
+  },
+  {
+    "id": "log-1781464955127",
+    "createdAt": "2026-06-14T19:22:35.127Z",
+    "userId": "user-1781456575520",
+    "action": "USER_LOGIN_OAUTH",
+    "details": "User arthur.google@nexcart.luxury logged in via Google OAuth."
+  },
+  {
+    "id": "log-1781457040286",
+    "createdAt": "2026-06-14T17:10:40.286Z",
+    "userId": "user-1781456575520",
+    "action": "ORDER_PLACE_PAYPAL",
+    "details": "PayPal payment transaction paypal_PP-1781457038873_1781457039775 confirmed for order NEX-20260614-6746."
+  },
+  {
+    "id": "log-1781456955304",
+    "createdAt": "2026-06-14T17:09:15.304Z",
+    "userId": "user-1781456575520",
+    "action": "PROFILE_UPDATE",
+    "details": "User arthur.google@nexcart.luxury updated profile details."
+  },
+  {
+    "id": "log-1781456766399",
+    "createdAt": "2026-06-14T17:06:06.399Z",
+    "userId": "user-1781456575520",
+    "action": "USER_LOGIN_OAUTH",
+    "details": "User arthur.google@nexcart.luxury logged in via Google OAuth."
+  },
+  {
+    "id": "log-1781456575523",
+    "createdAt": "2026-06-14T17:02:55.523Z",
+    "userId": "user-1781456575520",
+    "action": "USER_REGISTER_OAUTH",
+    "details": "User arthur.google@nexcart.luxury registered via Google OAuth."
+  }
+]

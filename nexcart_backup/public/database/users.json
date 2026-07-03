@@ -1,0 +1,36 @@
+[
+  {
+    "id": "user-admin",
+    "name": "Bespoke Admin",
+    "email": "admin@nexcart.luxury",
+    "password": "$2a$10$tMh4zHl0GvH.vB3Z9bWKeOgT9D59Cg7e.yQe4CqD11D1X9x0Xp7wO",
+    "role": "ADMIN",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80",
+    "createdAt": "2026-06-14T17:02:55.514Z"
+  },
+  {
+    "id": "user-cust",
+    "name": "Victoria Sterling",
+    "email": "sterling@customer.com",
+    "password": "$2a$10$7Z8VfXwM5.w91Z1/r3o8G.6x.hB7qS1L2Rj8w9Xz2qP5n7v6c2q2m",
+    "role": "CUSTOMER",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
+    "createdAt": "2026-06-14T17:02:55.519Z"
+  },
+  {
+    "id": "user-1781456575520",
+    "role": "CUSTOMER",
+    "createdAt": "2026-06-14T17:02:55.520Z",
+    "name": "Arthur Pendragon",
+    "email": "arthur.google@nexcart.luxury",
+    "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80"
+  },
+  {
+    "id": "user-1781468774810",
+    "role": "CUSTOMER",
+    "createdAt": "2026-06-14T20:26:14.810Z",
+    "name": "Manasvi Baravaliya",
+    "email": "komalbenbarvaliya@gmail.com",
+    "image": "https://lh3.googleusercontent.com/a/ACg8ocKONmUGGqxQ6tpATuYnoh82TJMW6K1mHTaoU5gAfNk-sf2axw=s96-c"
+  }
+]

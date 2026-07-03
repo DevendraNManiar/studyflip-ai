@@ -1,0 +1,282 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id            String          @id @default(uuid())
+  name          String?
+  email         String          @unique
+  password      String?         // Hashed password for email auth
+  emailVerified DateTime?
+  image         String?
+  role          Role            @default(CUSTOMER)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  
+  addresses     Address[]
+  orders        Order[]
+  cart          Cart?
+  wishlist      Wishlist?
+  reviews       Review[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+}
+
+model Address {
+  id           String   @id @default(uuid())
+  userId       String
+  name         String   // E.g. "Home", "Office"
+  recipient    String   // Recipient name
+  street       String
+  city         String
+  state        String
+  postalCode   String
+  country      String
+  phone        String
+  isDefault    Boolean  @default(false)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id            String      @id @default(uuid())
+  name          String
+  slug          String      @unique
+  description   String      @db.Text
+  richText      String?     @db.Text
+  sku           String      @unique
+  barcode       String?     @unique
+  price         Float
+  discountPrice Float?
+  tax           Float       @default(0.0) // Tax percentage (e.g., 18%)
+  weight        Float       @default(0.0) // Weight in kg
+  stock         Int         @default(0)
+  images        String[]    // URLs of image gallery
+  videoUrl      String?     // Video preview URL
+  rating        Float       @default(0.0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  categoryId    String
+  brandId       String
+
+  category      Category    @relation(fields: [categoryId], references: [id])
+  brand         Brand       @relation(fields: [brandId], references: [id])
+  variants      Variant[]
+  reviews       Review[]
+  orderItems    OrderItem[]
+  cartItems     CartItem[]
+  wishlistItems WishlistItem[]
+  inventory     Inventory?
+}
+
+model Variant {
+  id        String   @id @default(uuid())
+  productId String
+  name      String   // E.g., "Color", "Size"
+  value     String   // E.g., "Deep Purple", "XL"
+  price     Float?   // Optional override price
+  stock     Int      @default(0)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  description String?   @db.Text
+  image       String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Brand {
+  id          String    @id @default(uuid())
+  name        String
+  slug        String    @unique
+  description String?   @db.Text
+  logo        String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Cart {
+  id        String     @id @default(uuid())
+  userId    String?    @unique // Nullable for guest carts
+  guestId   String?    @unique // Unique session ID for guests
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  cartId    String
+  productId String
+  quantity  Int      @default(1)
+  variantId String?  // Optional selected variant ID
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Wishlist {
+  id        String         @id @default(uuid())
+  userId    String         @unique
+  items     WishlistItem[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model WishlistItem {
+  id         String   @id @default(uuid())
+  wishlistId String
+  productId  String
+  createdAt  DateTime @default(now())
+
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([wishlistId, productId])
+}
+
+model Order {
+  id             String      @id @default(uuid())
+  orderNumber    String      @unique
+  userId         String
+  status         OrderStatus @default(PENDING)
+  totalAmount    Float
+  taxAmount      Float
+  shippingCost   Float
+  discountAmount Float       @default(0.0)
+  shippingAddress String     @db.Text
+  trackingNumber String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  user           User        @relation(fields: [userId], references: [id])
+  items          OrderItem[]
+  payments       Payment[]
+  appliedCoupon  String?
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  productId String
+  name      String   // Snapshot of name
+  price     Float    // Snapshot of price
+  quantity  Int
+  variant   String?  // Description of variant
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  orderId        String
+  paymentMethod  String        // "STRIPE", "PAYPAL", "MOCK"
+  status         PaymentStatus @default(PENDING)
+  transactionId  String        @unique
+  amount         Float
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  order          Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Coupon {
+  id          String    @id @default(uuid())
+  code        String    @unique
+  discount    Float     // Percentage discount (e.g. 15%) or flat amount
+  isFlat      Boolean   @default(false)
+  expiryDate  DateTime
+  usageLimit  Int       @default(100)
+  usageCount  Int       @default(0)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+  rating    Int
+  comment   String   @db.Text
+  isApproved Boolean @default(true) // Moderation
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Newsletter {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Inventory {
+  id        String   @id @default(uuid())
+  productId String   @unique
+  reserved  Int      @default(0) // Reserved for pending carts/checkouts
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  action    String   // E.g., "PRODUCT_UPDATE", "USER_BAN"
+  details   String   @db.Text
+  ipAddress String?
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
