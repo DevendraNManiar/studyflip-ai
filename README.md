@@ -111,6 +111,7 @@ npm run dev
 ## 📹 Video Demonstration
 A complete walkthrough video showing StudyFlip AI in action is included in this repository:
 - **Video file:** `AI-Powered-Interactive-Learning-Platform.mp4`
+link: https://drive.google.com/file/d/1OsGFQnXgTlKIv7HYbsaEyrn0ztHUKe9d/view?usp=sharing
 
 > [!TIP]
 > You can download and watch the video directly, or view it on GitHub when configured!
